@@ -7,11 +7,13 @@
         @foreach($articles as $article)
             <div class="col-3 mb-3">
                 <div class="card h-100">
-                    <img src="{{$article->image}}" class="card-img-top" alt="...">
+                    @if($article->image)
+                        <img src="{{$article->image}}" class="card-img-top" alt="...">
+                    @endif
                     <div class="card-body">
                       <h5 class="card-title">{{ $article->title }}</h5>
                       <p class="card-text">{{ $article->snippet }}</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <a href="{{route('article', ['article' => $article])}}" class="btn btn-primary">Read more!</a>
                     </div>
                 </div>
             </div>
