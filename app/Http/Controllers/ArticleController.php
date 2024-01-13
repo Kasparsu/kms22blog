@@ -41,6 +41,7 @@ class ArticleController extends Controller
         // }
         // $article->title = $request->input('title');
         // $article->body = $request->input('body');
+        $article->user()->associate(auth()->user());
         $article->save();
         return redirect()->route('articles.index');
     }

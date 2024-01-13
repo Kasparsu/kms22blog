@@ -9,6 +9,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ $article->title }}</h5>
             <p class="card-text">{!! nl2br($article->body) !!}</p>
+            <p class="text-body-secondary">{{ $article->user->name }}</p>
         </div>
     </div>
 </div>

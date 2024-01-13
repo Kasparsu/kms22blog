@@ -13,6 +13,9 @@
                     <div class="card-body">
                       <h5 class="card-title">{{ $article->title }}</h5>
                       <p class="card-text">{{ $article->snippet }}</p>
+                      <p class="text-body-secondary">
+                        <a href="{{route('user', ['user' => $article->user])}}">{{ $article->user->name}}</a>
+                      </p>
                       <a href="{{route('article', ['article' => $article])}}" class="btn btn-primary">Read more!</a>
                     </div>
                 </div>
