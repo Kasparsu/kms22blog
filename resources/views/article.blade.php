@@ -12,5 +12,23 @@
             <p class="text-body-secondary">{{ $article->user->name }}</p>
         </div>
     </div>
+    <h1>Comments:</h1>
+    <div class="card h-100 mt-2">
+        <div class="card-body">
+            <form action="{{route('comment', ['article' => $article ])}}" method="POST">
+                @csrf
+                <textarea class="form-control" name="body" placeholder="Write something..."></textarea>
+                <input class="btn btn-primary mt-2 w-100" type="submit">
+            </form>
+        </div>
+    </div>
+    @foreach($article->comments()->latest()->get() as $comment)
+        <div class="card h-100 mt-2">
+            <div class="card-body">
+                <p class="card-text">{{$comment->body}}</p>
+                <p class="text-body-secondary">{{ $comment->user->name }}</p>
+            </div>
+        </div>
+    @endforeach
 </div>
 @endsection

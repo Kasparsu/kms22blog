@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(UserSeeder::class);
         $this->call(ArticleSeeder::class);
-
+        $this->call(CommentSeeder::class);
         // \App\Models\User::factory(10)->create();
 
 

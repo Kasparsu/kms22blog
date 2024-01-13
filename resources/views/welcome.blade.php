@@ -16,6 +16,9 @@
                       <p class="text-body-secondary">
                         <a href="{{route('user', ['user' => $article->user])}}">{{ $article->user->name}}</a>
                       </p>
+                      <p class="text-body-secondary">
+                        <b>Comments: </b> {{$article->comments()->count()}}
+                      </p>
                       <a href="{{route('article', ['article' => $article])}}" class="btn btn-primary">Read more!</a>
                     </div>
                 </div>
