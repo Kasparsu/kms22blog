@@ -3,6 +3,11 @@
 @section('content')
 <div class="container">
     <a href="{{route('articles.create')}}" class="btn btn-primary">New Article</a>
+    @if(request()->routeIs('articles.deleted'))
+        <a href="{{route('articles.index')}}" class="btn btn-secondary">Published Articles</a>
+    @else
+        <a href="{{route('articles.deleted')}}" class="btn btn-secondary">Deleted Articles</a>
+    @endif
     {{$articles->links()}}
     <table class="table table-striped">
         <thead>
@@ -24,9 +29,13 @@
                     <td>
                         <div class="btn-group">
                             <a class="btn btn-info">View</a>
-                            <a class="btn btn-warning">Edit</a>
-                            <a class="btn btn-danger">Delete</a>
+                            <a class="btn btn-warning" href="{{route('articles.edit', ['article' => $article])}}">Edit</a>
+                            <button form="delete-{{$article->id}}" class="btn btn-danger">Delete</button>
                         </div>
+                        <form id="delete-{{$article->id}}" action="{{route('articles.destroy', ['article' => $article])}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </td>
                 </tr>
             @endforeach

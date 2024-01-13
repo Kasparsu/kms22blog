@@ -59,7 +59,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+        return view('articles.edit', compact('article'));
     }
 
     /**
@@ -67,7 +67,9 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        //
+        $article->fill($request->validated());
+        $article->save();
+        return redirect()->route('articles.index');
     }
 
     /**
@@ -75,6 +77,12 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        $article->delete();
+        return redirect()->route('articles.index');
+    }
+
+    public function deleted(){
+        $articles = Article::onlyTrashed()->latest()->paginate();
+        return view('articles.index', compact('articles'));
     }
 }
